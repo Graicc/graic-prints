@@ -12,6 +12,6 @@
 <style>
   /* Add your layout styling here */
   div {
-    margin: 0 100px;
+    margin: 0 10px;
   }
 </style>
