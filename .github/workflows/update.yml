@@ -5,13 +5,17 @@ on:
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/update.yml
 
 jobs:
   update_file:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Install dependencies
         run: |
@@ -27,7 +31,7 @@ jobs:
 
       - name: Commit Latest Release Version
         if: steps.git-check.outputs.modified == 'true'
-        run: |
-          git add src/routes/data.json
-          git commit -am "Update data file"
-          git push 
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update data file
+          file_pattern: 'src/routes/data.json'
