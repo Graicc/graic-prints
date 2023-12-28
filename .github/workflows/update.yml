@@ -1,0 +1,33 @@
+name: Update data file
+
+on:
+  # every hour or manual trigger
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update_file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+
+      - name: Generate data
+        run: |
+          python scripts/generate.py https://mastodon.social/@graicprints.rss src/routes/data.json
+
+      - name: Check for Modified Files
+        id: git-check
+        run: echo modified=$([ -z "`git status --porcelain`" ] && echo "false" || echo "true") >> $GITHUB_OUTPUT
+
+      - name: Commit Latest Release Version
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git add src/routes/data.json
+          git commit -am "Update data file"
+          git push 
