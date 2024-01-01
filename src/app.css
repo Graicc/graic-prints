@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans&display=swap');
 
 body {
     background-color: aqua;
-    font-family: 'comic sans ms', 'sans-serif';
+    font-family: 'Shantell Sans', 'comic sans ms', cursive;
     margin: 0;
 }

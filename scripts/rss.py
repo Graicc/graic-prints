@@ -23,8 +23,18 @@ def generate_rss(json_file, rss_file):
     for entry in entries:
         fe = fg.add_entry()
         fe.guid(entry['link'], permalink=True)
-        fe.title('Graic\'s Prints')
-        fe.description(entry['description'] + '<br>' + f'<img src="{entry["media_link"]}" alt="{entry["media_alt"]}" />')
+
+        # split the description into the title and the description by the first sentence
+        parts = entry['description'].split('. ', 1)
+        description = ''
+        if len(parts) > 1:
+            fe.title(parts[0])
+            description = parts[1]
+        else:
+            fe.title(entry['description'])
+            description = entry['description']
+        
+        fe.description(f'{description}<br><img src="{entry["media_link"]}" alt="{entry["media_alt"]}" />')
         # if entry['media_link'] != '':
         #     # get file type
         #     file_type = entry['media_link'].split('.')[-1]

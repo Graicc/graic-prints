@@ -1,6 +1,11 @@
 <!-- Card.svelte -->
 <script>
-  export let item;
+  import '@fortawesome/fontawesome-free/css/all.min.css'
+
+  /**
+	 * @type {{ link: string; media_link: string; media_alt: string; description: string; pubdate: string; }}
+	 */
+   export let item;
 
   /**
 	 * @param {string} dateString
@@ -25,17 +30,20 @@
 </script>
 
 <div class="card">
-  <a href={item.link}>
+  <a href={item.media_link}>
     {#if item.media_link.endsWith(".mp4")}
-      <video autoplay muted src={item.media_link} alt="Video of the print" />
+      <video autoplay muted src={item.media_link} />
     {:else}
-      <img src={item.media_link} alt={item.media_alt}/>
+      <img src={item.media_link.replace('original', 'small')} alt={item.media_alt}/>
     {/if}
   </a>
     
   <!-- This is wildly unsafe, but I trust the rss feed is not giving me any XSS attacks -->
-  <div class="desc">{@html item.description}</div>
-  <p class="date">{formatDate(item.pubdate)}</p>
+  <p class="desc">{@html item.description}</p>
+  <div class="bottom">
+    <span class="date">{formatDate(item.pubdate)}</span>
+    <a href={item.link}><i class="fa-brands fa-mastodon fa-xl"></i></a>
+  </div>
 </div>
 
 <style>
@@ -47,6 +55,9 @@
     margin: 10px;
     border-radius: 10px;
     height: auto;
+
+    display: flex;
+    flex-direction: column;
   }
 
   .card img, .card video {
@@ -60,9 +71,24 @@
     margin: 10px;
   }
 
+  .bottom {
+    /* bottom of parent flexbox */
+    margin-top: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
   .card .date {
     margin: 10px;
     color: black;
+    font-size: .8em;
+  }
+  
+  .bottom a {
+    color: inherit;
+    margin: 10px;
     font-size: .8em;
   }
 </style>
