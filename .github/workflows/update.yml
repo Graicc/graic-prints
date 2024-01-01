@@ -29,9 +29,14 @@ jobs:
         id: git-check
         run: echo modified=$([ -z "`git status --porcelain`" ] && echo "false" || echo "true") >> $GITHUB_OUTPUT
 
+      - name: Generate rss feed
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          python scripts/rss.py src/routes/data.json static/feed
+
       - name: Commit Latest Release Version
         if: steps.git-check.outputs.modified == 'true'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update data file
-          file_pattern: 'src/routes/data.json'
+          file_pattern: 'src/routes/data.json static/feed'

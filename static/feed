@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Graic's Prints</title>
+    <link>https://prints.graic.net</link>
+    <description>Prints by Graic</description>
+    <atom:link href="https://prints.graic.net" rel="self"/>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <generator>python-feedgen</generator>
+    <image>
+      <url>https://prints.graic.net/logo.png</url>
+      <title>Graic's Prints</title>
+      <link>https://prints.graic.net</link>
+    </image>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Jan 2024 22:48:43 +0000</lastBuildDate>
+    <item>
+      <title>Graic's Prints</title>
+      <description>First print on SV06, a Benchy. Quite pleased with the quality of the print for a first print&lt;br&gt;&lt;img src="https://files.mastodon.social/media_attachments/files/111/656/353/569/181/681/original/4f5997a2e9c5a202.png" alt="A 3DBency printed in white" /&gt;</description>
+      <guid isPermaLink="true">https://mastodon.social/@graicprints/111656367110641731</guid>
+      <pubDate>Thu, 28 Dec 2023 05:22:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>Graic's Prints</title>
+      <description>Wallet and keys organizer. I'll probably end up putting rubber feet on it&lt;br&gt;&lt;img src="https://files.mastodon.social/media_attachments/files/111/656/705/645/906/402/original/f97ad792c1e2d697.png" alt="A wallet propped up vertically and car keys in a dish" /&gt;</description>
+      <guid isPermaLink="true">https://mastodon.social/@graicprints/111656710518310578</guid>
+      <pubDate>Thu, 28 Dec 2023 06:49:53 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
