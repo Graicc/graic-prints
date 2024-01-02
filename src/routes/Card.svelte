@@ -42,7 +42,9 @@
 	<p class="desc">{@html item.description}</p>
 	<div class="bottom">
 		<span class="date">{formatDate(item.pubdate)}</span>
-		<a href={item.link}><i class="fa-brands fa-mastodon fa-xl"></i></a>
+		<a href={item.link} aria-label="View on Mastodon">
+			<i class="fa-brands fa-mastodon fa-xl"></i>
+		</a>
 	</div>
 </div>
 

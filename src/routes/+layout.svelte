@@ -1,5 +1,7 @@
 <script>
-  import "../app.css";
+	import '../app.css';
 </script>
+
+<title>Graic's Prints</title>
 
 <slot />
