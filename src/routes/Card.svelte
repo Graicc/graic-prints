@@ -1,6 +1,7 @@
 <!-- Card.svelte -->
 <script>
-	import '@fortawesome/fontawesome-free/css/all.min.css';
+	import Fa from 'svelte-fa';
+	import { faMastodon } from '@fortawesome/free-brands-svg-icons';
 
 	/**
 	 * @type {{ link: string; media_link: string; media_alt: string; description: string; pubdate: string; }}
@@ -43,7 +44,7 @@
 	<div class="bottom">
 		<span class="date">{formatDate(item.pubdate)}</span>
 		<a href={item.link} aria-label="View on Mastodon">
-			<i class="fa-brands fa-mastodon fa-xl"></i>
+			<Fa icon={faMastodon} size="lg" />
 		</a>
 	</div>
 </div>
@@ -92,6 +93,6 @@
 	.bottom a {
 		color: inherit;
 		margin: 10px;
-		font-size: 0.8em;
+		font-size: 0.9em;
 	}
 </style>
