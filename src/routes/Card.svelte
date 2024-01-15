@@ -2,11 +2,30 @@
 <script>
 	import Fa from 'svelte-fa';
 	import { faMastodon } from '@fortawesome/free-brands-svg-icons';
+	import Siema from 'siema';
+	import { onMount } from 'svelte';
+	import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 	/**
-	 * @type {{ link: string; media_link: string; media_alt: string; description: string; pubdate: string; }}
+	 * @type {{ media: {link: string; alt: string}[]; description: any; pubdate: string; link: any; }}
 	 */
 	export let item;
+
+	let siema;
+	let controller;
+
+	let index = 0;
+
+	onMount(() => {
+		if (item.media.length > 1) {
+			controller = new Siema({
+				selector: siema,
+				onChange: () => {
+					index = controller.currentSlide;
+				}
+			});
+		}
+	});
 
 	/**
 	 * @param {string} dateString
@@ -31,13 +50,30 @@
 </script>
 
 <div class="card">
-	<a href={item.media_link}>
-		{#if item.media_link.endsWith('.mp4')}
-			<video autoplay muted src={item.media_link} />
-		{:else}
-			<img src={item.media_link.replace('original', 'small')} alt={item.media_alt} />
+	<div class="images">
+		<!-- left and right arrows -->
+		{#if index > 0}
+			<button class="arrow left" on:click={() => controller.prev()}>
+				<Fa icon={faChevronLeft} size="lg" on:click={() => controller.prev()} />
+			</button>
 		{/if}
-	</a>
+
+		{#if index < item.media.length - 1}
+			<button class="arrow right" on:click={() => controller.next()}>
+				<Fa icon={faChevronRight} size="lg" on:click={() => controller.next()} />
+			</button>
+		{/if}
+
+		<div bind:this={siema}>
+			{#each item.media as { link, alt }}
+				{#if link.endsWith('.mp4')}
+					<video autoplay muted src={link} />
+				{:else}
+					<img src={link.replace('original', 'small')} {alt} />
+				{/if}
+			{/each}
+		</div>
+	</div>
 
 	<!-- This is wildly unsafe, but I trust the rss feed is not giving me any XSS attacks -->
 	<p class="desc">{@html item.description}</p>
@@ -61,18 +97,46 @@
 
 		display: flex;
 		flex-direction: column;
+
+		overflow: hidden;
 	}
 
 	.card img,
 	.card video {
 		width: 100%;
 		height: auto;
-		border-radius: 10px 10px 0px 0px;
 	}
 
 	.card .desc {
 		color: black;
 		margin: 10px;
+	}
+
+	.images {
+		position: relative;
+	}
+	
+	/* reset button css */
+	button {
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+
+	.arrow {
+		position: absolute;
+		top: 50%;
+		z-index: 1;
+		opacity: 0.8;
+		padding: 5px;
+	}
+
+	.left {
+		left: 0px;
+	}
+
+	.right {
+		right: 0px;
 	}
 
 	.bottom {

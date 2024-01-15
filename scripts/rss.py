@@ -34,7 +34,7 @@ def generate_rss(json_file, rss_file):
             fe.title(entry['description'])
             description = entry['description']
         
-        fe.description(f'{description}<br><img src="{entry["media_link"]}" alt="{entry["media_alt"]}" />')
+        fe.description(f'{description}<br><img src="{entry["media"][0]["link"]}" alt="{entry["media"][0]["alt"]}" />')
         # if entry['media_link'] != '':
         #     # get file type
         #     file_type = entry['media_link'].split('.')[-1]

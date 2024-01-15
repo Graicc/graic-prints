@@ -1,37 +1,51 @@
 import json
 from datetime import datetime
-import feedparser
+import xml.etree.ElementTree as ET
+import requests
 
 def parse_feed_and_append_to_json(feed_url, json_file):
-    # Parse the feed
-    feed = feedparser.parse(feed_url)
-
     # Create a list to store entries with media
     entries_with_media = []
 
+    response = requests.get(feed_url)
+    rss_content = response.text
+    root = ET.fromstring(rss_content)
+    
     # Iterate through entries and filter those with media
-    for entry in feed.entries:
-        # check if there is media and it is an image
-        if 'media_content' in entry and entry.media_content and 'image' in entry.media_content[0]['type']:
-            # remove the p tags from the summary
-            entry.summary = entry.summary.replace('<p>', '')
-            entry.summary = entry.summary.replace('</p>', '')
+    # Iterate through each 'item' element in the RSS feed
+    for item in root.findall('.//item'):
+        item_dict = {}
 
-            # remove script tags from the summary
-            # This doesn't really prevent XSS attacks,
-            # but the account being followed should be trusted
-            entry.summary = entry.summary.replace('<script>', '')
-            entry.summary = entry.summary.replace('</script>', '')
+        # Extract information from the 'item' element
+        item_dict['link'] = item.find('link').text
+        item_dict['pubdate'] = item.find('pubDate').text
 
-            # Extract relevant information
-            entry_data = {
-                'link': entry.link,
-                'pubdate': entry.published,
-                'description': entry.summary,
-                'media_link': entry.media_content[0]['url'],
-                'media_alt': entry.content[0]['value'] if entry.content else "The print"
-            }
-            entries_with_media.append(entry_data)
+        description = item.find('description').text
+
+        # remove the p tags from the summary
+        description = description.replace('<p>', '')
+        description = description.replace('</p>', '')
+
+        # remove script tags from the summary
+        # This doesn't really prevent XSS attacks,
+        # but the account being followed should be trusted
+        description = description.replace('<script>', '')
+        description = description.replace('</script>', '')
+        item_dict['description'] = description
+
+        # Extract information from 'media:content' elements if available
+        media_list = []
+        for media_content in item.findall('.//media:content', namespaces={'media': 'http://search.yahoo.com/mrss/'}):
+            media_dict = {}
+            media_dict['link'] = media_content.attrib['url']
+            media_dict['alt'] = media_content.find('media:description', namespaces={'media': 'http://search.yahoo.com/mrss/'}).text
+            media_list.append(media_dict)
+
+        if len(media_list) == 0:
+            continue
+
+        item_dict['media'] = media_list
+        entries_with_media.append(item_dict)
 
     # If there are entries with media, append them to the JSON file
     if entries_with_media:
