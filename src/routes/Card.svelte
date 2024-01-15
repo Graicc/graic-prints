@@ -64,7 +64,7 @@
 			</button>
 		{/if}
 
-		<div bind:this={siema}>
+		<div class="container" bind:this={siema}>
 			{#each item.media as { link, alt }}
 				{#if link.endsWith('.mp4')}
 					<video autoplay muted src={link} />
@@ -86,10 +86,8 @@
 </div>
 
 <style>
-	/* Add your card styling here */
 	.card {
 		background-color: #00dfdf;
-		border: 1px solid #ddd;
 		padding: 0px;
 		margin: 10px;
 		border-radius: 10px;
@@ -116,11 +114,19 @@
 		position: relative;
 	}
 	
+	.container {
+		aspect-ratio : 1 / 1;
+		width: 100%;
+		/* height: 200px; */
+		overflow: hidden;
+	}
+
 	/* reset button css */
 	button {
 		background: none;
 		border: none;
 		cursor: pointer;
+		color: white;
 	}
 
 	.arrow {
