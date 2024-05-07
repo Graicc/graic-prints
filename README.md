@@ -1,38 +1,9 @@
-# create-svelte
+# Graic prints
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+[https://prints.graic.net](https://prints.graic.net)
 
-## Creating a project
+Graic prints converts [a Mastodon feed](https://mastodon.social/@graicprints) to a static Svelte site with a [RSS feed](https://prints.graic.net/feed).
 
-If you're seeing this, you've probably already done this step. Congrats!
+Mastodon provides an [RSS feed for every account](https://mastodon.social/@graicprints.rss). [`generate.py`](scripts/generate.py) converts it to a [json file](src/routes/data.json), which is read by Svelte. This is updated periodically by a [GitHub Action](.github/workflows/update.yml). The resulting RSS feed is genereated by [`rss.py`](scripts/rss.py).
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+The site uses [Siema](https://pawelgrzybek.github.io/siema) for the image carousel.
