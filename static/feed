@@ -13,7 +13,7 @@
       <link>https://prints.graic.net</link>
     </image>
     <language>en</language>
-    <lastBuildDate>Fri, 27 Sep 2024 03:07:14 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Oct 2024 03:22:12 +0000</lastBuildDate>
     <item>
       <title>First print on SV06, a Benchy</title>
       <description>Quite pleased with the quality of the print for a first print&lt;br&gt;&lt;img src="https://files.mastodon.social/media_attachments/files/111/656/353/569/181/681/original/4f5997a2e9c5a202.png" alt="A 3DBency printed in white" /&gt;</description>
@@ -67,6 +67,12 @@
       <description>Phone webcam mount for the side of a monitor&lt;br&gt;&lt;img src="https://files.mastodon.social/media_attachments/files/113/207/298/706/122/560/original/dee145d4bc8a8e00.png" alt="An L shaped bracket on the back of a monitor" /&gt;</description>
       <guid isPermaLink="true">https://mastodon.social/@graicprints/113207306067361840</guid>
       <pubDate>Fri, 27 Sep 2024 03:06:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>Whiteboard mounts v2</title>
+      <description>Shorter length and more flexible marker clip. For a v3 I’d make it a little longer (40mm from wall) and add a slot so the whiteboard doesn’t move when written on&lt;br&gt;&lt;img src="https://files.mastodon.social/media_attachments/files/113/241/334/518/000/284/original/e8a2ab4ab236823e.png" alt="A whiteboard on a wall with two supports below holding a marker and an eraser" /&gt;</description>
+      <guid isPermaLink="true">https://mastodon.social/@graicprints/113241337795710432</guid>
+      <pubDate>Thu, 03 Oct 2024 03:21:26 +0000</pubDate>
     </item>
   </channel>
 </rss>

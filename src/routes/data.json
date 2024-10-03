@@ -1,5 +1,20 @@
 [
   {
+    "link": "https://mastodon.social/@graicprints/113241337795710432",
+    "pubdate": "Thu, 03 Oct 2024 03:21:26 +0000",
+    "description": "Whiteboard mounts v2. Shorter length and more flexible marker clip. For a v3 I\u2019d make it a little longer (40mm from wall) and add a slot so the whiteboard doesn\u2019t move when written on",
+    "media": [
+      {
+        "link": "https://files.mastodon.social/media_attachments/files/113/241/334/518/000/284/original/e8a2ab4ab236823e.png",
+        "alt": "A whiteboard on a wall with two supports below holding a marker and an eraser"
+      },
+      {
+        "link": "https://files.mastodon.social/media_attachments/files/113/241/334/757/871/599/original/c4ee27da1cb512d2.png",
+        "alt": "The two supports as printed"
+      }
+    ]
+  },
+  {
     "link": "https://mastodon.social/@graicprints/113207306067361840",
     "pubdate": "Fri, 27 Sep 2024 03:06:43 +0000",
     "description": "Phone webcam mount for the side of a monitor",
